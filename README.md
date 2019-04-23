@@ -90,12 +90,7 @@
   <li>Use of any CSS framework is not allowed.</li>
   <li>You may use SCSS if you are comfortable with preprocessors.</li>
   </p>
-  <p>
-    Please find the mockups here
-  <li><a href="../images/MockUpDesktop.png" target="_blank"> Desktop </a></li>
-  <li><a href="../images/Mobile.png" target="_blank"> Mobile </a></li>
-  </p>
-
+  
   <p>
     The form should contain the following fields and validate against the rules for each. The validations should be shown below the corresponding field.
   </p>
