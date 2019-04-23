@@ -1,0 +1,90 @@
+<html>
+<head>
+    <title>
+        API Docs
+    </title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 15px;
+            font-family: Arial;
+        }
+        h1 {
+            display: inline;
+            font-family: Arial;
+            opacity: .85;
+            text-decoration: underline;
+        }
+        h2 { opacity: .7; }
+        code { background-color: #EEEEEE; }
+        div { overflow: hidden; margin: 5px; }
+        li {
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+<h2> Welcome to the API. </h2>
+
+    <h4>Endpoints</h4>
+    <div>
+        <code> /quotes/ </code> <br>
+        <ul>
+            <li> <b> Verbs:</b>
+                POST <br>
+            </li>
+            <li> <b> Body:</b>
+                <code>
+                    { startDate: Date, endDate: Date, citizenShip: '', policyMax: '', age: '', mailingState: '' }
+                </code>
+            </li>
+            <li> <b> Rules: </b> All fields will be mandatory. There should be at least one traveler.</li>
+            <li> <b> Response: </b>
+                <br>
+                Responds with a 500 if conditions not met.
+                <br>
+                Responds with a 200 with the following shape otherwise:
+                <br>
+                <code>
+                    { success: true }
+                </code>
+                <br>
+            </li>
+        </ul>
+    </div>
+
+    <div>
+        <code> /quotes/ </code> <br>
+        <ul>
+            <li> <b>Verbs:</b>
+                GET <br>
+            </li>
+            <li> <b>Body:</b>
+                <code>
+                    No Body Expected
+                </code>
+                <br>
+            </li>
+            <li> <b>Response: </b>
+                <br>
+                Responds with a 404 if plan not found.
+                <br>
+                Responds with a 200 and an object with the following shape otherwise:
+                <br>
+                <code>
+                    quotes: [
+                        {
+                            id: '',
+                            name: '',
+                            description: '',
+                            price: '',
+                            type: '',
+                            section: ''
+                        }
+                    ]
+                </code>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

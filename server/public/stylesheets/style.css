@@ -1,0 +1,23 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; margin: 0;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  border-bottom: #000 1px solid;
+  width: 100%;
+}
+
+#link {
+  font-size: 25px;
+}
+
+.rules {
+  font-size: 20px;
+  padding: 10px;
+}
