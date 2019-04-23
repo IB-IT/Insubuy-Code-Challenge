@@ -47,7 +47,7 @@
   <p>
     You will be asked to build a site which have the
     functionality described below. The application server should be running at
-    <a href="http://localhost:8080">http://localhost:8080</a> - if it is not, please run it.
+    <a href="http://localhost:8080">http://localhost:8080</a> - if run 'npm start'.
   </p>
   <p>
     You can visit
