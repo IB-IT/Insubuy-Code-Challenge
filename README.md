@@ -7,9 +7,6 @@
 </div>
 
 <div class="rules">
-  <p id="link">
-    <a href="/api">Click here to view API</a>
-  </p>
   <ul>
     <li>
       <a href="#basicRequirements">
