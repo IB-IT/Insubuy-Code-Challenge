@@ -7,9 +7,6 @@
 </div>
 
 <div class="rules">
-  <p id="link">
-    <a href="/api">Click here to view API</a>
-  </p>
   <ul>
     <li>
       <a href="#basicRequirements">
@@ -47,7 +44,7 @@
   <p>
     You will be asked to build a site which have the
     functionality described below. The application server should be running at
-    <a href="http://localhost:8080">http://localhost:8080</a> - if it is not, please run it.
+    <a href="http://localhost:8080">http://localhost:8080</a> - if not, run 'npm start'.
   </p>
   <p>
     You can visit
@@ -98,12 +95,7 @@
   <li>Use of any CSS framework is not allowed.</li>
   <li>You may use SCSS if you are comfortable with preprocessors.</li>
   </p>
-  <p>
-    Please find the mockups here
-  <li><a href="../images/MockUpDesktop.png" target="_blank"> Desktop </a></li>
-  <li><a href="../images/Mobile.png" target="_blank"> Mobile </a></li>
-  </p>
-
+  
   <p>
     The form should contain the following fields and validate against the rules for each. The validations should be shown below the corresponding field.
   </p>
