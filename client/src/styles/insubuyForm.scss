@@ -1,0 +1,59 @@
+.insubuy-form {
+  max-width: 50%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  border: lightgrey 1px solid;
+  width: 100%;
+  color: #000080;
+}
+.form-control{
+  margin: 2px;
+}
+.form-label{
+  margin-right: 97px;
+}
+.citizenShip{
+  margin-right: 43px;
+}
+.mailingState{
+  margin-right: 29px;
+}
+#age{
+  margin-left: 96px;
+}
+.startDate{
+  margin-right: 52px;
+}
+.endDate{
+  margin-right: 60px;
+}
+.container-fluid{
+  width:720px;
+  margin:20px;
+}
+.submitFormBtn, .clearFormBtn{
+  margin: 10px;
+  background: orange;
+  color: white;
+  width: 30%;
+  height: 11%;
+  font-weight: bold;
+  display: inline-block;
+  border: none;
+  border-radius: 5px;
+}
+select, input{
+  border-radius: 0px;
+  padding:10px 16px;
+  height: 40px;
+  width:200px;
+  border:0px
+}
+input{
+  height: 16px;
+  border:1px solid lightgray;
+}
+.errorMsg{
+  margin-top:-1em;
+}
