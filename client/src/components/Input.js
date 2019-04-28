@@ -3,9 +3,14 @@ import React from "react";
 const Input = props => {
   //console.log(props.value);
 
-  const citizenshipOrMailingState = props.name==='citizenShip'?'citizenShip':((props.name==='mailingState')?'mailingState':'');
+  const citizenshipOrMailingState =
+    props.name === "citizenShip"
+      ? "citizenShip"
+      : props.name === "mailingState"
+      ? "mailingState"
+      : "";
   return (
-    <div className="form-group">
+    <React.Fragment>
       <label htmlFor={props.name} className={citizenshipOrMailingState}>
         {props.title}
       </label>
@@ -20,7 +25,7 @@ const Input = props => {
         autoComplete="off"
         {...props}
       />
-    </div>
+    </React.Fragment>
   );
 };
 

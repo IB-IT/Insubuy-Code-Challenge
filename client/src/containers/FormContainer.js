@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { withRouter } from 'react-router-dom';
+import { withRouter } from "react-router-dom";
 import Input from "../components/Input";
 import Select from "../components/Select";
 import Button from "../components/Button";
@@ -7,7 +7,6 @@ import "../styles/insubuyForm.scss";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import isAfter from "date-fns/isAfter";
-
 
 class FormContainer extends Component {
   constructor(props) {
@@ -45,6 +44,10 @@ class FormContainer extends Component {
         quote: {
           ...prevState.quote,
           [name]: value
+        },
+        errors: {
+          ...prevState.errors,
+          [name]: ""
         }
       }),
       () => console.log(this.state.quote)
@@ -65,6 +68,11 @@ class FormContainer extends Component {
           ...prevState.quote,
           startDate,
           endDate
+        },
+        errors: {
+          ...prevState.errors,
+          startDate: "",
+          endDate: ""
         }
       }),
       () => console.log(this.state.quote)
@@ -165,7 +173,7 @@ class FormContainer extends Component {
     }).then(response => {
       response.json().then(data => {
         console.log("Successful" + data);
-        this.props.history.push('/results');
+        this.props.history.push("/results");
       });
     });
   }
@@ -187,91 +195,111 @@ class FormContainer extends Component {
 
   render() {
     return (
-      <div className="insubuy-form">
-        <form className="container-fluid" onSubmit={this.handleFormSubmit}>
-            <Select
-              title={"Policy Maximum"}
-              name={"policyMax"}
-              options={this.state.policyMaximumOptions}
-              value={this.state.quote.policyMax}
-              placeholder={"Choose your policy maximum"}
-              handleChange={this.handleInput}
-            />{" "}
-          <p className="errorMsg">{this.state.errors.policyMax}</p>
-          <Input
-            inputtype={"number"}
-            title={"Age"}
-            name={"age"}
-            value={this.state.quote.age}
-            placeholder={"Choose your age"}
-            handleChange={this.handleInput}
-          />{" "}
-          <p className="errorMsg">{this.state.errors.age}</p>
-          <label htmlFor="startDate" className="startDate">Start Date</label>
-          <DatePicker
-            id="startDate"
-            placeholderText="Start Date"
-            selectsStart
-            selected={this.state.quote.startDate}
-            startDate={this.state.quote.startDate}
-            endDate={this.state.quote.endDate}
-            onChange={this.handleStartDateChange}
-            dateFormat="MM/dd/YYYY"
-            autoComplete="off"
-          />
-          <p className="errorMsg">{this.state.errors.startDate}</p>
-          <label htmlFor="endDate" className="endDate">End Date</label>
-          <DatePicker
-            id="endDate"
-            placeholderText="End Date"
-            selectsEnd
-            selected={this.state.quote.endDate}
-            startDate={this.state.quote.startDate}
-            endDate={this.state.quote.endDate}
-            onChange={this.handleEndDateChange}
-            dateFormat="MM/dd/YYYY"
-            autoComplete="off"
-          />
-          <p className="errorMsg">{this.state.errors.endDate}</p>
-          <Input
-          id="citizenship"
-            inputtype={"text"}
-            name={"citizenShip"}
-            title={"Citizenship"}
-            value={this.state.quote.citizenShip}
-            placeholder={"Choose your contry of citizenship"}
-            handleChange={this.handleInput}
-          />{" "}
-          <p className="errorMsg">{this.state.errors.citizenShip}</p>
-          <Input
-            inputtype={"text"}
-            name={"mailingState"}
-            title={"Mailing State"}
-            value={this.state.quote.mailingState}
-            placeholder={"Enter your Mailing State"}
-            handleChange={this.handleInput}
-          />{" "}
-          <p className="errorMsg">{this.state.errors.mailingState}</p>
-          <Button
-            action={this.handleFormSubmit}
-            type={"orange"}
-            title={"Submit"}
-            style={buttonStyle}
-          />{" "}
-          <Button
-            action={this.handleClearForm}
-            type={"link"}
-            title={"Clear"}
-            style={buttonStyle}
-          />{" "}
-        </form>
+      <div className="insubuy-container">
+        <header>
+          <h3>Travel Insurance</h3>
+        </header>
+        <div className="insubuy-form">
+          <form onSubmit={this.handleFormSubmit}>
+            <div className="form-row">
+              <div className="form-column">
+                <Select
+                  title={"Policy Maximum"}
+                  name={"policyMax"}
+                  options={this.state.policyMaximumOptions}
+                  value={this.state.quote.policyMax}
+                  placeholder={"Choose your policy maximum"}
+                  handleChange={this.handleInput}
+                />
+                <p className="error-message">{this.state.errors.policyMax}</p>
+              </div>
+              <div className="form-column">
+                <Input
+                  inputtype={"number"}
+                  title={"Age"}
+                  name={"age"}
+                  value={this.state.quote.age}
+                  placeholder={"Choose your age"}
+                  handleChange={this.handleInput}
+                />
+                <p className="error-message">{this.state.errors.age}</p>
+              </div>
+            </div>
+            <div className="form-row">
+              <div className="form-column">
+                <label htmlFor="travelDate" className="startDate">
+                  Travel Dates
+                </label>
+                <DatePicker
+                  id="travelDate"
+                  placeholderText="Start Date"
+                  selectsStart
+                  selected={this.state.quote.startDate}
+                  startDate={this.state.quote.startDate}
+                  endDate={this.state.quote.endDate}
+                  onChange={this.handleStartDateChange}
+                  dateFormat="MM/dd/YYYY"
+                  autoComplete="off"
+                />
+                <DatePicker
+                  id="endDate"
+                  placeholderText="End Date"
+                  selectsEnd
+                  selected={this.state.quote.endDate}
+                  startDate={this.state.quote.startDate}
+                  endDate={this.state.quote.endDate}
+                  onChange={this.handleEndDateChange}
+                  dateFormat="MM/dd/YYYY"
+                  autoComplete="off"
+                />
+                <p className="error-message">{this.state.errors.startDate}</p>
+                <p className="error-message">{this.state.errors.endDate}</p>
+              </div>
+              <div className="form-column">
+                <Input
+                  id="citizenship"
+                  inputtype={"text"}
+                  name={"citizenShip"}
+                  title={"Citizenship"}
+                  value={this.state.quote.citizenShip}
+                  placeholder={"Choose your contry of citizenship"}
+                  handleChange={this.handleInput}
+                />
+                <p className="error-message">{this.state.errors.citizenShip}</p>
+              </div>
+            </div>
+            <div className="form-row">
+              <div className="form-column">
+                <Input
+                  inputtype={"text"}
+                  name={"mailingState"}
+                  title={"Mailing State"}
+                  value={this.state.quote.mailingState}
+                  placeholder={"Enter your Mailing State"}
+                  handleChange={this.handleInput}
+                />
+                <p className="error-message">
+                  {this.state.errors.mailingState}
+                </p>
+              </div>
+            </div>
+            <div className="buttons-wrapper">
+              <Button
+                action={this.handleFormSubmit}
+                type={"orange"}
+                title={"GET QUOTES"}
+              />
+              <Button
+                action={this.handleClearForm}
+                type={"link"}
+                title={"Reset Form"}
+              />
+            </div>
+          </form>
+        </div>
       </div>
     );
   }
 }
-
-const buttonStyle = {
-  margin: "10px 10px 10px 10px"
-};
 
 export default withRouter(FormContainer);

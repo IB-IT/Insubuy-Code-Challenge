@@ -1,17 +1,18 @@
 import React, { Component } from "react";
-import "../styles/resultsContainer.scss";
-import ReactTable from 'react-table';
-import 'react-table/react-table.css';
+import "../styles/insubuyForm.scss";
+import ReactTable from "react-table";
+import "react-table/react-table.css";
 
-class ResultsContainer extends  Component {
-
-  constructor(props){
+class ResultsContainer extends Component {
+  constructor(props) {
     super(props);
     this.state = {
       data: [],
-      selected: {}, 
-      selectAll: 0
-    }
+      selected: {},
+      selectAll: 0,
+      showCompareButton: false,
+      showCancelButton: false
+    };
   }
 
   getData = () => {
@@ -23,36 +24,75 @@ class ResultsContainer extends  Component {
       }
     }).then(response => {
       response.json().then(data => {
-        console.log("Successful" + data);
         this.setState({
           data: data.quotes
-        })
+        });
       });
     });
-  }
+  };
 
-  componentDidMount(){
+  componentDidMount() {
     this.getData();
   }
 
-  toggleRow = (id) => {
-		const newSelected = Object.assign({}, this.state.selected);
-		newSelected[id] = !this.state.selected[id];
-    if(Object.keys(newSelected).length > 4){
+  toggleRow = id => {
+    const newSelected = Object.assign({}, this.state.selected);
+    newSelected[id] = !this.state.selected[id];
+    let selected = [];
+
+    for (let key in newSelected) {
+      if (newSelected[key]) {
+        selected.push(newSelected);
+      }
+    }
+
+    if (Object.keys(selected).length >= 2) {
+      this.setState({
+        showCompareButton: true
+      });
+    } else {
+      this.setState({
+        showCompareButton: false
+      });
+    }
+
+    if (Object.keys(newSelected).length > 4) {
       return false;
     }
-		this.setState({
-			selected: newSelected,
-			selectAll: 2
-		});
-	}
+    this.setState({
+      selected: newSelected,
+      selectAll: 2
+    });
+  };
 
   compareData = () => {
-    console.log(this.state.selected);
-  }
+    let selected = this.state.selected,
+      data = this.state.data,
+      comparingData = [];
 
-  render(){
+    for (let i = 0; i <= data.length; i++) {
+      for (let key in selected) {
+        if (data[i] && selected[key] && data[i].id === parseInt(key)) {
+          comparingData.push(data[i]);
+        }
+      }
+    }
 
+    this.setState({
+      data: comparingData,
+      showCancelButton: true
+    });
+  };
+
+  cancelCompareData = () => {
+    this.getData();
+    this.setState({
+      selected: {},
+      showCompareButton: false
+    });
+  };
+
+  render() {
     const columns = [
       {
         id: "checkbox",
@@ -72,42 +112,64 @@ class ResultsContainer extends  Component {
         width: 45
       },
       {
-        Header: 'Name',
-        accessor: 'name'
-      }, {
-        Header: 'Description',
-        accessor: 'description',
+        Header: "Name",
+        accessor: "name"
+      },
+      {
+        Header: "Description",
+        accessor: "description",
         sortable: false,
         filterable: false
-      }, {
-        Header: 'Price',
-        accessor: 'price'
-      },{
-        Header: 'Type',
-        accessor: 'type',
+      },
+      {
+        Header: "Price",
+        accessor: "price"
+      },
+      {
+        Header: "Type",
+        accessor: "type",
         sortable: false
-      },{
-        Header: 'Section',
-        accessor: 'section',
+      },
+      {
+        Header: "Section",
+        accessor: "section",
         sortable: false
       }
-    ]
+    ];
 
     return (
-      <div className="col-md-6">
-        <h3> Results Container </h3>
-        <button type="button" onClick={this.compareData()}>Compare</button>
+      <div className="insubuy-container results">
+        <header>
+          <h3>Results</h3>
+        </header>
+        {this.state.showCompareButton && (
+          <div className="buttons-wrapper">
+            <button
+              className="btn btn-orange"
+              type="button"
+              onClick={this.compareData}
+            >
+              Compare
+            </button>
+            <button
+              className="btn btn-orange"
+              type="button"
+              onClick={this.cancelCompareData}
+            >
+              Cancel
+            </button>
+          </div>
+        )}
         <ReactTable
           data={this.state.data}
+          pageSize={10}
           columns={columns}
           filterable
           selectable
         />
-        <h3> Results Container </h3>
       </div>
-    )
+    );
   }
-  
 }
 
 export default ResultsContainer;

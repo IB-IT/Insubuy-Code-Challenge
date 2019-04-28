@@ -4,7 +4,7 @@ const Button = props => {
   return (
     <button
       style={props.style}
-      className={props.type === "orange" ? "btn btn-orange submitFormBtn" : "btn btn-link clearFormBtn"}
+      className={props.type === "orange" ? "btn btn-orange" : "btn btn-link"}
       onClick={props.action}
     >
       {props.title}

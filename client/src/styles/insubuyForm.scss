@@ -1,59 +1,135 @@
-.insubuy-form {
-  max-width: 50%;
-  margin: 0 auto;
-  display: flex;
+* {
+  box-sizing: border-box;
+  line-height: 1.5;
+}
+body {
+  line-height: 1.5;
+  padding: 0;
+  margin: 0;
+  font-size: 12px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.insubuy-container {
+  max-width: 60%;
+  margin: 50px auto 0 auto;
   justify-content: center;
   border: lightgrey 1px solid;
   width: 100%;
-  color: #000080;
+  &.results {
+    margin-top: 0;
+  }
 }
-.form-control{
-  margin: 2px;
+header {
+  background: #f0f3f6;
+  width: 100%;
+  display: block;
+  padding: 30px 20px;
 }
-.form-label{
-  margin-right: 97px;
+header h3 {
+  color: #406a95;
+  font-size: 16px;
+  margin: 0;
 }
-.citizenShip{
-  margin-right: 43px;
+.insubuy-form {
+  padding: 16px;
 }
-.mailingState{
-  margin-right: 29px;
+.form-row {
+  display: flex;
+  margin-bottom: 15px;
+
+  .form-column {
+    width: 50%;
+    &:first-child {
+      padding-right: 5px;
+    }
+    &:last-child {
+      padding-left: 5px;
+    }
+  }
+  select,
+  input {
+    width: 100%;
+    padding: 5px;
+    display: block;
+    font-size: 12px;
+    border: 1px solid lightgrey;
+    height: 35px;
+  }
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  .react-datepicker-wrapper {
+    width: 50%;
+  }
+  .react-datepicker__input-container {
+    width: 100%;
+    #travelDate {
+      border-right: 0;
+    }
+  }
 }
-#age{
-  margin-left: 96px;
+
+.error-message {
+  color: red;
+  margin: 0;
 }
-.startDate{
-  margin-right: 52px;
+.buttons-wrapper {
+  padding-top: 20px;
+  text-align: center;
 }
-.endDate{
-  margin-right: 60px;
-}
-.container-fluid{
-  width:720px;
-  margin:20px;
-}
-.submitFormBtn, .clearFormBtn{
-  margin: 10px;
-  background: orange;
-  color: white;
-  width: 30%;
-  height: 11%;
-  font-weight: bold;
-  display: inline-block;
+.btn-orange {
+  display: block;
+  width: 100%;
+  background-color: #ed8029;
   border: none;
-  border-radius: 5px;
+  color: white;
+  padding: 8px;
+  text-transform: uppercase;
+  font-size: 14px;
+  border-radius: 3px;
+  cursor: pointer;
 }
-select, input{
-  border-radius: 0px;
-  padding:10px 16px;
-  height: 40px;
-  width:200px;
-  border:0px
+.results {
+  .buttons-wrapper {
+    padding: 5px;
+    text-align: right;
+
+    .btn-orange {
+      width: auto;
+      display: inline-block;
+      font-size: 12px;
+      padding: 3px 6px;
+      margin-left: 10px;
+    }
+    &:after {
+      content: "";
+      display: block;
+      clear: both;
+    }
+  }
 }
-input{
-  height: 16px;
-  border:1px solid lightgray;
+.ReactTable {
+  clear: both;
 }
-.errorMsg{
-  margin-top:-1em;
+.btn-link {
+  background: none;
+  border: none;
+  margin: 0 auto;
+  padding: 8px;
+  color: #406a95;
+  display: inline-block;
+  font-style: italic;
+  text-decoration: underline;
+  cursor: pointer;
+}
+@media (max-width: 767px) {
+  .form-row {
+    display: inherit;
+    .form-column {
+      width: 100%;
+      margin-bottom: 15px;
+    }
+  }
 }
